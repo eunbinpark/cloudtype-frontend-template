@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import ListGuests from "./components/ListGuests";
 import Header from "./components/Header";
 import AddGuest from "./components/AddGuest";
-import Drug from './components/drug';
+import Drug from './components/Drug';
 
 function App() {
   return (
