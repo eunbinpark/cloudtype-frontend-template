@@ -15,6 +15,7 @@ function App() {
                     <Route path = "/waitlist" element={<ListGuests />}></Route>
                     <Route path = "/add-guest" element={<AddGuest />}></Route>
                     <Route path = "/edit-guest/:id" element={<AddGuest />}></Route>
+                    <Route path = "/drug" element={<Drug />}></Route>
                 </Routes>
         </Router>
     </div>

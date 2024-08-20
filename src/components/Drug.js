@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-function DrugSearch() {
+const Drug = () => {
   const [tki, setTki] = useState('');
   const [product, setProduct] = useState('');
   const [ingredient, setIngredient] = useState('');
@@ -8,22 +8,22 @@ function DrugSearch() {
   const [alternativeEfficacy, setAlternativeEfficacy] = useState('');
   const [alternativeDrugs, setAlternativeDrugs] = useState([]);
 
-//   const handleSearch = async () => {
-//     // 메인 제품 검색 처리
-//     // /api/search 라는 API 엔드포인트가 있다고 가정
-//     const response = await fetch(`/api/search?tki=${tki}&product=${product}`);
-//     const data = await response.json();
-//     setIngredient(data.ingredient);
-//     setEfficacy(data.efficacy);
-//   };
+  const handleSearch = async () => {
+    // 메인 제품 검색 처리
+    // /api/search 라는 API 엔드포인트가 있다고 가정
+    const response = await fetch(`/api/search?tki=${tki}&product=${product}`);
+    const data = await response.json();
+    setIngredient(data.ingredient);
+    setEfficacy(data.efficacy);
+  };
 
-//   const handleAlternativeSearch = async () => {
-//     // 대체 약품 검색 처리
-//     // /api/alternative-search 라는 API 엔드포인트가 있다고 가정
-//     const response = await fetch(`/api/alternative-search?efficacy=${alternativeEfficacy}`);
-//     const data = await response.json();
-//     setAlternativeDrugs(data.alternatives);
-//   };
+  const handleAlternativeSearch = async () => {
+    // 대체 약품 검색 처리
+    // /api/alternative-search 라는 API 엔드포인트가 있다고 가정
+    const response = await fetch(`/api/alternative-search?efficacy=${alternativeEfficacy}`);
+    const data = await response.json();
+    setAlternativeDrugs(data.alternatives);
+  };
 
   return (
     <div>
@@ -74,10 +74,4 @@ function DrugSearch() {
   );
 }
 
-export default class Drug extends Component {
-  render() {
-    return (
-      <div>drug</div>
-    )
-  }
-}
+export default Drug;
