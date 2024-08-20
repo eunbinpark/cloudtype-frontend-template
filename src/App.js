@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import ListGuests from "./components/ListGuests";
 import Header from "./components/Header";
 import AddGuest from "./components/AddGuest";
+import Drug from './components/drug';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
                     <Route path = "/waitlist" element={<ListGuests />}></Route>
                     <Route path = "/add-guest" element={<AddGuest />}></Route>
                     <Route path = "/edit-guest/:id" element={<AddGuest />}></Route>
+                    <Route path = "/drug" element={<Drug />}></Route>
                 </Routes>
         </Router>
     </div>
