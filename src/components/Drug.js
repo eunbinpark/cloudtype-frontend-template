@@ -51,7 +51,7 @@ const Drug = () => {
                 <input
                     type="text"
                     value={drug}
-                    onChange={setDrug}
+                    onChange={(e) => setDrug(e.target.value)}
                     style={{ width: '150px', padding: '5px', marginRight: '10px' }}
                 />
                 <button onClick={getDrugInfo} style={{ padding: '5px 10px', backgroundColor: '#d3d3d3', border: 'none', cursor: 'pointer' }}>검색</button>
