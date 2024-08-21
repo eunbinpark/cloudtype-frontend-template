@@ -22,7 +22,6 @@ const Drug = () => {
 
     // 항암제, 제품 검색
     const getDrugInfo = (e) => {
-        e.preventDefault();
         
         DrugService.searchDrug(tki, drug)
             .then((response) => {
