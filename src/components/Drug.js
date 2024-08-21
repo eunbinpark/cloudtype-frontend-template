@@ -26,6 +26,7 @@ const Drug = () => {
         DrugService.searchDrug(tki, drug)
             .then((response) => {
                 setDrugInfo(response.data);
+                console.log(response.data);
             })
             .catch(error => {
                 console.log(error);

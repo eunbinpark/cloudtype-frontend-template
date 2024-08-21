@@ -2,14 +2,12 @@ import axios from "axios";
 
 class DrugService{
 
-    searchDrug(tki, drug) {
-        const params = new URLSearchParams({ tki, drug }).toString();
-        return axios.get(`${process.env.REACT_APP_WAITLIST_API_URL}?${params}`);
+    searchDrug(tki, drug){
+        return axios.get(process.env.REACT_APP_WAITLIST_API_URL + "/drug" , tki, drug)
     }
     
-    searchEfficacy(efficacySearch) {
-        const params = new URLSearchParams({ efficacy: efficacySearch }).toString();
-        return axios.get(`${process.env.REACT_APP_WAITLIST_API_URL}?${params}`);
+    searchEfficacy(efficacySearch){
+        return axios.get(process.env.REACT_APP_WAITLIST_API_URL, efficacySearch);
     }
 }
 
