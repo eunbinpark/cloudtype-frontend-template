@@ -16,6 +16,9 @@ const Drug = () => {
     // 대체약물 map
     const [Drugs, setDrugs] = useState([]);
 
+    // tki 값을 출력하기 위한 상태 추가
+    const [searchTki, setSearchTki] = useState('');
+
     useEffect(() => {
         getDrugInfo();
     }, [])
@@ -27,6 +30,7 @@ const Drug = () => {
             .then((response) => {
                 setDrugInfo(response.data);
                 console.log(response.data);
+                setSearchTki(tki); // 검색 후 tki 값을 설정
             })
             .catch(error => {
                 console.log(error);
@@ -102,12 +106,15 @@ const Drug = () => {
                         value={drugInfo.efficacy}
                         readOnly
                         style={{
-                            width: '150px',
+                            width: 'auto',
+                            minWidth: '150px', // 최소 너비 설정
+                            maxWidth: '100%',  // 최대 너비를 부모 요소에 맞춤
                             padding: '5px',
                             marginRight: '10px',
                             border: 'none',
                             borderBottom: '1px solid #000',
-                            outline: 'none'
+                            outline: 'none',
+                            boxSizing: 'content-box' // 너비 조정 시 내용에 따라 조정되도록 설정
                         }}
                     />
                     이며,
@@ -115,7 +122,7 @@ const Drug = () => {
                 <p>
                     <input
                         type="text"
-                        value={tki}
+                        value={searchTki}
                         readOnly
                         style={{
                             width: '150px',
