@@ -181,7 +181,7 @@ const Drug = () => {
                     <tbody>
                         {Drugs.map((drug, index) => (
                             <tr key={index}>
-                                <td style={{ border: '1px solid #000', padding: '8px' }}>{drug.ingredient}</td>
+                                <td style={{ border: '1px solid #000', padding: '8px' }}>{drug.ingredient}(drug.ingredientkor)</td>
                                 <td style={{ border: '1px solid #000', padding: '8px' }}>{drug.brandname}</td>
                                 <td style={{ border: '1px solid #000', padding: '8px' }}>{drug.company}</td>
                             </tr>
