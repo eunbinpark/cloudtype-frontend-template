@@ -90,12 +90,15 @@ const Drug = () => {
                         value={drugInfo.ingredient}
                         readOnly
                         style={{
-                            width: '150px',
+                            width: 'auto',
+                            minWidth: '150px', // 최소 너비 설정
+                            maxWidth: '100%',  // 최대 너비를 부모 요소에 맞춤
                             padding: '5px',
                             marginRight: '10px',
                             border: 'none',
                             borderBottom: '1px solid #000',
-                            outline: 'none'
+                            outline: 'none',
+                            boxSizing: 'content-box' // 너비 조정 시 내용에 따라 조정되도록 설정
                         }}
                     />
                     성분으로 만들어져 있고,
@@ -125,12 +128,15 @@ const Drug = () => {
                         value={searchTki}
                         readOnly
                         style={{
-                            width: '150px',
+                            width: 'auto',
+                            minWidth: '150px', // 최소 너비 설정
+                            maxWidth: '100%',  // 최대 너비를 부모 요소에 맞춤
                             padding: '5px',
                             marginRight: '10px',
                             border: 'none',
                             borderBottom: '1px solid #000',
-                            outline: 'none'
+                            outline: 'none',
+                            boxSizing: 'content-box' // 너비 조정 시 내용에 따라 조정되도록 설정
                         }}
                     />
                     표적항암제의
@@ -139,12 +145,15 @@ const Drug = () => {
                         value={drugInfo.ddi}
                         readOnly
                         style={{
-                            width: '150px',
+                            width: 'auto',
+                            minWidth: '150px', // 최소 너비 설정
+                            maxWidth: '100%',  // 최대 너비를 부모 요소에 맞춤
                             padding: '5px',
                             marginRight: '10px',
                             border: 'none',
                             borderBottom: '1px solid #000',
-                            outline: 'none'
+                            outline: 'none',
+                            boxSizing: 'content-box' // 너비 조정 시 내용에 따라 조정되도록 설정
                         }}
                     />
                     약물입니다.
