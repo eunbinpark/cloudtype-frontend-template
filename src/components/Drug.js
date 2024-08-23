@@ -18,6 +18,7 @@ const Drug = () => {
 
     // tki 값을 출력하기 위한 상태 추가
     const [searchTki, setSearchTki] = useState('');
+    const [searchBrandname, setSearchBrandname] = useState('');
 
     useEffect(() => {
         getDrugInfo();
@@ -43,6 +44,7 @@ const Drug = () => {
             .then((response) => {
                 setDrugs(response.data)
                 console.log(response.data)
+                setSearchBrandname(drug); 
             }).catch(error => {
                 console.log(error)
             })
@@ -98,7 +100,8 @@ const Drug = () => {
                             border: 'none',
                             borderBottom: '1px solid #000',
                             outline: 'none',
-                            boxSizing: 'content-box' // 너비 조정 시 내용에 따라 조정되도록 설정
+                            boxSizing: 'content-box', // 너비 조정 시 내용에 따라 조정되도록 설정
+                            textAlign: 'center', // 텍스트 가운데 정렬
                         }}
                     />
                     성분으로 만들어져 있고,
@@ -136,7 +139,8 @@ const Drug = () => {
                             border: 'none',
                             borderBottom: '1px solid #000',
                             outline: 'none',
-                            boxSizing: 'content-box' // 너비 조정 시 내용에 따라 조정되도록 설정
+                            boxSizing: 'content-box', // 너비 조정 시 내용에 따라 조정되도록 설정
+                            textAlign: 'center', // 텍스트 가운데 정렬
                         }}
                     />
                     표적항암제의
@@ -153,7 +157,8 @@ const Drug = () => {
                             border: 'none',
                             borderBottom: '1px solid #000',
                             outline: 'none',
-                            boxSizing: 'content-box' // 너비 조정 시 내용에 따라 조정되도록 설정
+                            boxSizing: 'content-box', // 너비 조정 시 내용에 따라 조정되도록 설정
+                            textAlign: 'center', // 텍스트 가운데 정렬
                         }}
                     />
                     약물입니다.
@@ -185,13 +190,29 @@ const Drug = () => {
             </div>
 
             <div>
-                <h3>위 제품과 동일한 효능을 가진 약품 목록은 다음과 같습니다.</h3>
+                <h3><input
+                        type="text"
+                        value={searchBrandname}
+                        readOnly
+                        style={{
+                            width: 'auto',
+                            minWidth: '150px', // 최소 너비 설정
+                            maxWidth: '100%',  // 최대 너비를 부모 요소에 맞춤
+                            padding: '5px',
+                            marginRight: '10px',
+                            border: 'none',
+                            borderBottom: '1px solid #000',
+                            outline: 'none',
+                            boxSizing: 'content-box', // 너비 조정 시 내용에 따라 조정되도록 설정
+                            textAlign: 'center', // 텍스트 가운데 정렬
+                        }}
+                    />을(를) 대체할 수 있는 효능을 가진 약품목록은 다음과 같습니다.</h3>
                 <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '20px' }}>
                     <thead>
                         <tr>
-                            <th style={{ border: '1px solid #000', padding: '8px', backgroundColor: '#f2f2f2' }}>성분</th>
-                            <th style={{ border: '1px solid #000', padding: '8px', backgroundColor: '#f2f2f2' }}>제품</th>
-                            <th style={{ border: '1px solid #000', padding: '8px', backgroundColor: '#f2f2f2' }}>제약회사</th>
+                            <th style={{ border: '1px solid #000', padding: '8px', backgroundColor: '#f2f2f2' }}>대체성분</th>
+                            <th style={{ border: '1px solid #000', padding: '8px', backgroundColor: '#f2f2f2' }}>대체제품</th>
+                            <th style={{ border: '1px solid #000', padding: '8px', backgroundColor: '#f2f2f2' }}>해당제약회사</th>
                         </tr>
                     </thead>
                     <tbody>
