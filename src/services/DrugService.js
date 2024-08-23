@@ -11,11 +11,11 @@ class DrugService {
         });
     }
 
-    searchEfficacy(tki, efficacySearch) {
+    searchEfficacy(tki, efficacy) {
         return axios.get(process.env.REACT_APP_WAITLIST_API_URL + "/efficacy", {
             params: {
                 tki: tki,
-                efficacySearch: efficacySearch
+                efficacy: efficacy
             }
         });
     }

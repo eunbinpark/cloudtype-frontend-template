@@ -18,6 +18,7 @@ const Drug = () => {
 
     useEffect(() => {
         getDrugInfo();
+        getEfficacyDrugs();
     }, [])
 
     // 항암제, 제품 검색
@@ -35,7 +36,7 @@ const Drug = () => {
 
     const getEfficacyDrugs = () => {
 
-        DrugService.searchEfficacy(efficacy)
+        DrugService.searchEfficacy(tki, efficacy)
         .then((response) => {
             setDrugs(response.data)
             console.log(response.data)
