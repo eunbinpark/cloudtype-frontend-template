@@ -18,7 +18,6 @@ const Drug = () => {
 
     useEffect(() => {
         getDrugInfo();
-        getEfficacyDrugs();
     }, [])
 
     // 항암제, 제품 검색
@@ -37,53 +36,134 @@ const Drug = () => {
     const getEfficacyDrugs = () => {
 
         DrugService.searchEfficacy(tki, efficacy)
-        .then((response) => {
-            setDrugs(response.data)
-            console.log(response.data)
-        }).catch(error => {
-            console.log(error)
-        })
+            .then((response) => {
+                setDrugs(response.data)
+                console.log(response.data)
+            }).catch(error => {
+                console.log(error)
+            })
 
     }
 
     return (
         <div style={{ margin: '20px', fontFamily: 'Arial, sans-serif' }}>
-            <h1>금기약물 검색</h1>
-            <div style={{ marginBottom: '10px' }}>
-                <label style={{ marginRight: '10px' }}>TKI:</label>
-                <input
-                    type="text"
-                    value={tki}
-                    onChange={(e) => setTki(e.target.value)}
-                    style={{ width: '150px', padding: '5px', marginRight: '10px' }}
-                />
-                <label style={{ marginRight: '10px' }}>제품:</label>
-                <input
-                    type="text"
-                    value={drug}
-                    onChange={(e) => setDrug(e.target.value)}
-                    style={{ width: '150px', padding: '5px', marginRight: '10px' }}
-                />
-                <button onClick={getDrugInfo} style={{ padding: '5px 10px', backgroundColor: '#d3d3d3', border: 'none', cursor: 'pointer' }}>검색</button>
-            </div>
+            <h1 style={{ fontSize: '25px', fontWeight: 'bold' }}>금기약물 검색</h1>
+            <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                marginBottom: '10px',
+                padding: '15px',
+                border: '1px solid #ccc',
+                borderRadius: '5px',
+                backgroundColor: '#ffffff'
+            }}>
+                <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '10px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                        <label style={{ marginRight: '10px' }}>복용하고 있는 표적항암제를 입력해주세요 : </label>
+                        <input
+                            type="text"
+                            value={tki}
+                            onChange={(e) => setTki(e.target.value)}
+                            style={{ width: '150px', padding: '5px', marginRight: '10px', border: '1px solid #ccc', outline: 'none' }}
+                        />
+                    </div>
 
-            <div style={{ marginBottom: '10px' }}>
-                <p>이 제품은 <input type="text" value={drugInfo.ingredient} readOnly style={{ width: '150px', padding: '5px', marginRight: '10px' }} /> 성분으로 만들어져 있어 표적항암제의 <input type="text" value={drugInfo.ddi} readOnly style={{ width: '150px', padding: '5px', marginRight: '10px' }} /> 약물입니다.</p>
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <label style={{ marginRight: '10px' }}>처방받은 약품을 입력해주세요 :</label>
+                        <input
+                            type="text"
+                            value={drug}
+                            onChange={(e) => setDrug(e.target.value)}
+                            style={{ width: '150px', padding: '5px', marginRight: '10px', border: '1px solid #ccc', outline: 'none' }}
+                        />
+                        <button onClick={getDrugInfo} style={{ padding: '5px 10px', backgroundColor: '#d3d3d3', border: '1px solid #ccc', cursor: 'pointer' }}>검색</button>
+                    </div>
+                </div>
+                <div style={{ marginBottom: '10px' }}>
+                <p>이 제품은
+                    <input
+                        type="text"
+                        value={drugInfo.ingredient}
+                        readOnly
+                        style={{
+                            width: '150px',
+                            padding: '5px',
+                            marginRight: '10px',
+                            border: 'none',
+                            borderBottom: '1px solid #000',
+                            outline: 'none'
+                        }}
+                    />
+                    성분으로 만들어져 있고,
+                </p>
+                <p>효능은
+                    <input
+                        type="text"
+                        value={drugInfo.efficacy}
+                        readOnly
+                        style={{
+                            width: '150px',
+                            padding: '5px',
+                            marginRight: '10px',
+                            border: 'none',
+                            borderBottom: '1px solid #000',
+                            outline: 'none'
+                        }}
+                    />
+                    이며,
+                </p>
+                <p>
+                    <input
+                        type="text"
+                        value={tki}
+                        readOnly
+                        style={{
+                            width: '150px',
+                            padding: '5px',
+                            marginRight: '10px',
+                            border: 'none',
+                            borderBottom: '1px solid #000',
+                            outline: 'none'
+                        }}
+                    />
+                    표적항암제의
+                    <input
+                        type="text"
+                        value={drugInfo.ddi}
+                        readOnly
+                        style={{
+                            width: '150px',
+                            padding: '5px',
+                            marginRight: '10px',
+                            border: 'none',
+                            borderBottom: '1px solid #000',
+                            outline: 'none'
+                        }}
+                    />
+                    약물입니다.
+                </p>
             </div>
+                </div>
 
-            <div style={{ marginBottom: '20px' }}>
-                <label style={{ marginRight: '10px' }}>이 제품의 효능:</label>
-                <input type="text" value={drugInfo.efficacy} readOnly style={{ width: '150px', padding: '5px' }} />
-            </div>
+            
 
-            <h2>대체약품 검색</h2>
+            <h2 style={{ fontSize: '25px', fontWeight: 'bold', marginTop: '50px' }}>대체약품 검색</h2>
+            <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                marginBottom: '10px',
+                padding: '15px',
+                border: '1px solid #ccc',
+                borderRadius: '5px',
+                backgroundColor: '#ffffff'
+            }}>
             <div style={{ marginBottom: '10px' }}>
-                <label style={{ marginRight: '10px' }}>효능:</label>
+                <label style={{ marginRight: '10px' }}>검색하고 싶은 효능을 입력해주세요 :</label>
                 <input
                     type="text"
                     value={efficacy}
                     onChange={(e) => setEfficacy(e.target.value)}
-                    style={{ width: '150px', padding: '5px', marginRight: '10px' }}
+                    style={{ width: '150px', padding: '5px', marginRight: '10px', border: '1px solid #ccc', outline: 'none' }}
                 />
                 <button onClick={getEfficacyDrugs} style={{ padding: '5px 10px', backgroundColor: '#d3d3d3', border: 'none', cursor: 'pointer' }}>검색</button>
             </div>
@@ -108,6 +188,7 @@ const Drug = () => {
                         ))}
                     </tbody>
                 </table>
+            </div>
             </div>
         </div>
     );
