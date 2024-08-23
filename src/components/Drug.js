@@ -14,7 +14,7 @@ const Drug = () => {
     const [drugInfo, setDrugInfo] = useState([]);
 
     // 대체약물 map
-    const [alternativeDrugs, setAlternativeDrugs] = useState([]);
+    const [Drugs, setDrugs] = useState([]);
 
     useEffect(() => {
         getDrugInfo();
@@ -22,7 +22,7 @@ const Drug = () => {
 
     // 항암제, 제품 검색
     const getDrugInfo = (e) => {
-        
+
         DrugService.searchDrug(tki, drug)
             .then((response) => {
                 setDrugInfo(response.data);
@@ -33,7 +33,15 @@ const Drug = () => {
             })
     }
 
-    const handleAlternativeSearch = () => {
+    const getEfficacyDrugs = () => {
+
+        DrugService.searchEfficacy(efficacy)
+        .then((response) => {
+            setDrugs(response.data)
+            console.log(response.data)
+        }).catch(error => {
+            console.log(error)
+        })
 
     }
 
@@ -76,7 +84,7 @@ const Drug = () => {
                     onChange={(e) => setEfficacy(e.target.value)}
                     style={{ width: '150px', padding: '5px', marginRight: '10px' }}
                 />
-                <button onClick={handleAlternativeSearch} style={{ padding: '5px 10px', backgroundColor: '#d3d3d3', border: 'none', cursor: 'pointer' }}>검색</button>
+                <button onClick={getEfficacyDrugs} style={{ padding: '5px 10px', backgroundColor: '#d3d3d3', border: 'none', cursor: 'pointer' }}>검색</button>
             </div>
 
             <div>
@@ -90,10 +98,10 @@ const Drug = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {alternativeDrugs.map((drug, index) => (
+                        {Drugs.map((drug, index) => (
                             <tr key={index}>
                                 <td style={{ border: '1px solid #000', padding: '8px' }}>{drug.ingredient}</td>
-                                <td style={{ border: '1px solid #000', padding: '8px' }}>{drug.drug}</td>
+                                <td style={{ border: '1px solid #000', padding: '8px' }}>{drug.brandname}</td>
                                 <td style={{ border: '1px solid #000', padding: '8px' }}>{drug.company}</td>
                             </tr>
                         ))}
