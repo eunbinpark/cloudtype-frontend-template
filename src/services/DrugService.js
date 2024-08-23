@@ -11,8 +11,13 @@ class DrugService {
         });
     }
 
-    searchEfficacy(efficacySearch) {
-        return axios.get(process.env.REACT_APP_WAITLIST_API_URL, efficacySearch);
+    searchEfficacy(tki, efficacySearch) {
+        return axios.get(process.env.REACT_APP_WAITLIST_API_URL + "/efficacy", {
+            params: {
+                tki: tki,
+                efficacySearch: efficacySearch
+            }
+        });
     }
 }
 
