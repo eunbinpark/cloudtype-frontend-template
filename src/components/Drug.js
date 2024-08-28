@@ -28,18 +28,21 @@ const Drug = () => {
 
     // 항암제, 제품 검색
     const getDrugInfo = (index) => {
-        const selectedDrug = drugList[index].drug;
-        DrugService.searchDrug(tki, selectedDrug)
-            .then((response) => {
-                const updatedDrugList = [...drugList];
-                updatedDrugList[index].drugInfo = response.data;
-                setDrugInfo(response.data);
-                console.log(response.data);
-                // setSearchTki(tki); // 검색 후 tki 값을 설정
-            })
-            .catch(error => {
-                console.log(error);
-            })
+        if (index >= 0 && index < drugList.length && drugList[index].drug) {
+            const selectedDrug = drugList[index].drug;
+            DrugService.searchDrug(tki, selectedDrug)
+                .then((response) => {
+                    const updatedDrugList = [...drugList];
+                    updatedDrugList[index].drugInfo = response.data;
+                    setDrugList(updatedDrugList); // drugList를 업데이트
+                    console.log(response.data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        } else {
+            console.log('Invalid index or drug value is undefined');
+        }
     }
 
     const getEfficacyDrugs = () => {
