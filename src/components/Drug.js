@@ -12,6 +12,8 @@ const Drug = () => {
     // 받는 파라미터
     // 성분 map : 성분 + 금기/주의 + 효능
     const [drugInfo, setDrugInfo] = useState([]);
+    
+    const [drugList, setDrugList] = useState([{ drug: '', drugInfo: { ddi: '', efficacy: '' } }]);
 
     // 대체약물 map
     const [Drugs, setDrugs] = useState([]);
@@ -25,10 +27,12 @@ const Drug = () => {
     }, [])
 
     // 항암제, 제품 검색
-    const getDrugInfo = () => {
-
-        DrugService.searchDrug(tki, drug)
+    const getDrugInfo = (index) => {
+        const selectedDrug = drugList[index].drug;
+        DrugService.searchDrug(tki, selectedDrug)
             .then((response) => {
+                const updatedDrugList = [...drugList];
+                updatedDrugList[index].drugInfo = response.data;
                 setDrugInfo(response.data);
                 console.log(response.data);
                 // setSearchTki(tki); // 검색 후 tki 값을 설정
@@ -50,6 +54,11 @@ const Drug = () => {
             })
 
     }
+
+    // 새로운 약품 검색 필드 추가
+    const addDrugField = () => {
+        setDrugList([...drugList, { drug: '', drugInfo: { ddi: '', efficacy: '' } }]);
+    };
 
     return (
         <div style={{ margin: '20px', fontFamily: 'Arial, sans-serif' }}>
@@ -74,21 +83,27 @@ const Drug = () => {
                         />
                     </div>
                     <div style={{ marginBottom: '20px' }}></div>
-                    <div style={{ display: 'flex' }}>
+
+                    {drugList.map((item, index) => (
+                        <div style={{ display: 'flex' }}>
                         <div style={{ display: 'flex', alignItems: 'center' }}>
                             <label style={{ marginRight: '10px' }}>처방받은 약품(성분 혹은 제품명)</label>
                             <input
                                 type="text"
-                                value={drug}
-                                onChange={(e) => setDrug(e.target.value)}
+                                value={item.drug}
+                                onChange={(e) => {
+                                    const updatedDrugList = [...drugList];
+                                    updatedDrugList[index].drug = e.target.value;
+                                    setDrugList(updatedDrugList);
+                                }}
                                 style={{ width: '150px', padding: '5px', marginRight: '10px', border: '1px solid #ccc', outline: 'none' }}
                             />
-                            <button onClick={getDrugInfo} style={{ padding: '5px 10px', marginRight: '10px', backgroundColor: '#d3d3d3', border: '1px solid #ccc', cursor: 'pointer' }}>검색</button>
+                            <button onClick={() => getDrugInfo(index)} style={{ padding: '5px 10px', marginRight: '10px', backgroundColor: '#d3d3d3', border: '1px solid #ccc', cursor: 'pointer' }}>검색</button>
                         </div>
                         <div>
                             <input
                                 type="text"
-                                value={drugInfo.ddi}
+                                value={item.drugInfo.ddi}
                                 readOnly
                                 style={{
                                     width: 'auto',
@@ -106,7 +121,7 @@ const Drug = () => {
                         <div>
                             <input
                                 type="text"
-                                value={drugInfo.efficacy}
+                                value={item.drugInfo.efficacy}
                                 readOnly
                                 style={{
                                     width: 'auto',
@@ -122,8 +137,10 @@ const Drug = () => {
                             />
                         </div>
                     </div>
+                    ))}
+                    
                     <div>
-                        <button style={{ padding: '5px 10px', backgroundColor: '#d3d3d3', border: 'none', cursor: 'pointer' }}>+</button>
+                        <button onClick={addDrugField} style={{ padding: '5px 10px', backgroundColor: '#d3d3d3', border: 'none', cursor: 'pointer' }}>+</button>
                     </div>
                 </div>
             </div>
