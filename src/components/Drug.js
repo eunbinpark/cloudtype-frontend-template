@@ -34,7 +34,7 @@ const Drug = () => {
             DrugService.searchDrug(tki, selectedDrug)
                 .then((response) => {
                     if(response.data.ingredient === null){
-                        swal('제목', '내용', 'warning')
+                        swal('warning', '금기 또는 주의를 요하는 약물 리스트에 없는 약물입니다.', 'warning')
                     }
                     const updatedDrugList = [...drugList];
                     updatedDrugList[index].drugInfo = response.data;
