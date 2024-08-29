@@ -102,7 +102,7 @@ const Drug = () => {
 
                     {drugList.map((item, index) => (
                         <div style={{ display: 'flex' }}>
-                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                            {/* <div style={{ display: 'flex', alignItems: 'center' }}> */}
                                 <label style={{ marginRight: '10px' }}>처방받은 약품(성분 혹은 제품명)</label>
                                 <input
                                     type="text"
@@ -115,8 +115,8 @@ const Drug = () => {
                                     style={{ width: '150px', padding: '5px', marginRight: '10px', border: '1px solid #ccc', outline: 'none' }}
                                 />
                                 <button onClick={() => getDrugInfo(index)} style={{ padding: '5px 10px', marginRight: '10px', backgroundColor: '#d3d3d3', border: '1px solid #ccc', cursor: 'pointer' }}>검색</button>
-                            </div>
-                            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                            {/* </div>
+                            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}> */}
                                 <input
                                     type="text"
                                     value={item.drugInfo.ddi}
@@ -151,7 +151,7 @@ const Drug = () => {
                                         textAlign: 'center', // 텍스트 가운데 정렬
                                     }}
                                 />
-                            </div>
+                            {/* </div> */}
                         </div>
                     ))}
 
