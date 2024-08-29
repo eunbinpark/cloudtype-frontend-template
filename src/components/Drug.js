@@ -32,6 +32,9 @@ const Drug = () => {
             const selectedDrug = drugList[index].drug;
             DrugService.searchDrug(tki, selectedDrug)
                 .then((response) => {
+                    if(response.data.ingredient === null){
+                        alert("금기 또는 주의를 요하는 약물 리스트에 없는 약물입니다.")
+                    }
                     const updatedDrugList = [...drugList];
                     updatedDrugList[index].drugInfo = response.data;
                     setDrugList(updatedDrugList); // drugList를 업데이트
