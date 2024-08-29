@@ -13,7 +13,7 @@ const Drug = () => {
     // 받는 파라미터
     // 성분 map : 성분 + 금기/주의 + 효능
     const [drugInfo, setDrugInfo] = useState([]);
-    
+
     const [drugList, setDrugList] = useState([{ drug: '', drugInfo: { ddi: '', efficacy: '' } }]);
 
     // 대체약물 map
@@ -33,7 +33,7 @@ const Drug = () => {
             const selectedDrug = drugList[index].drug;
             DrugService.searchDrug(tki, selectedDrug)
                 .then((response) => {
-                    if(response.data.ingredient === null){
+                    if (response.data.ingredient === null) {
                         swal('warning', '금기 또는 주의를 요하는 약물 리스트에 없는 약물입니다.', 'warning')
                     }
                     const updatedDrugList = [...drugList];
@@ -53,7 +53,16 @@ const Drug = () => {
 
         DrugService.searchEfficacy(tki, efficacy)
             .then((response) => {
-                setDrugs(response.data)
+                const drugs = response.data;
+
+                // 배열 내 모든 항목의 ingredient가 null인지 확인
+                const allIngredientsNull = drugs.every(drug => drug.ingredient === null);
+
+                if (allIngredientsNull) {
+                    swal('warning', '대체 약물이 없습니다.', 'warning');
+                } else {
+                    setDrugs(drugs);
+                }
                 console.log(response.data)
                 // setSearchBrandname(drug);
             }).catch(error => {
@@ -93,59 +102,59 @@ const Drug = () => {
 
                     {drugList.map((item, index) => (
                         <div style={{ display: 'flex' }}>
-                        <div style={{ display: 'flex', alignItems: 'center' }}>
-                            <label style={{ marginRight: '10px' }}>처방받은 약품(성분 혹은 제품명)</label>
-                            <input
-                                type="text"
-                                value={item.drug}
-                                onChange={(e) => {
-                                    const updatedDrugList = [...drugList];
-                                    updatedDrugList[index].drug = e.target.value;
-                                    setDrugList(updatedDrugList);
-                                }}
-                                style={{ width: '150px', padding: '5px', marginRight: '10px', border: '1px solid #ccc', outline: 'none' }}
-                            />
-                            <button onClick={() => getDrugInfo(index)} style={{ padding: '5px 10px', marginRight: '10px', backgroundColor: '#d3d3d3', border: '1px solid #ccc', cursor: 'pointer' }}>검색</button>
+                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                                <label style={{ marginRight: '10px' }}>처방받은 약품(성분 혹은 제품명)</label>
+                                <input
+                                    type="text"
+                                    value={item.drug}
+                                    onChange={(e) => {
+                                        const updatedDrugList = [...drugList];
+                                        updatedDrugList[index].drug = e.target.value;
+                                        setDrugList(updatedDrugList);
+                                    }}
+                                    style={{ width: '150px', padding: '5px', marginRight: '10px', border: '1px solid #ccc', outline: 'none' }}
+                                />
+                                <button onClick={() => getDrugInfo(index)} style={{ padding: '5px 10px', marginRight: '10px', backgroundColor: '#d3d3d3', border: '1px solid #ccc', cursor: 'pointer' }}>검색</button>
+                            </div>
+                            <div>
+                                <input
+                                    type="text"
+                                    value={item.drugInfo.ddi}
+                                    readOnly
+                                    style={{
+                                        width: 'auto',
+                                        minWidth: '150px', // 최소 너비 설정
+                                        maxWidth: '100%',  // 최대 너비를 부모 요소에 맞춤
+                                        padding: '5px',
+                                        marginRight: '10px',
+                                        border: '1px solid #ccc',
+                                        outline: 'none',
+                                        boxSizing: 'content-box', // 너비 조정 시 내용에 따라 조정되도록 설정
+                                        textAlign: 'center', // 텍스트 가운데 정렬
+                                    }}
+                                />
+                            </div>
+                            <div>
+                                <input
+                                    type="text"
+                                    value={item.drugInfo.efficacy}
+                                    readOnly
+                                    style={{
+                                        width: 'auto',
+                                        minWidth: '150px', // 최소 너비 설정
+                                        maxWidth: '100%',  // 최대 너비를 부모 요소에 맞춤
+                                        padding: '5px',
+                                        marginRight: '10px',
+                                        border: '1px solid #ccc',
+                                        outline: 'none',
+                                        boxSizing: 'content-box', // 너비 조정 시 내용에 따라 조정되도록 설정
+                                        textAlign: 'center', // 텍스트 가운데 정렬
+                                    }}
+                                />
+                            </div>
                         </div>
-                        <div>
-                            <input
-                                type="text"
-                                value={item.drugInfo.ddi}
-                                readOnly
-                                style={{
-                                    width: 'auto',
-                                    minWidth: '150px', // 최소 너비 설정
-                                    maxWidth: '100%',  // 최대 너비를 부모 요소에 맞춤
-                                    padding: '5px',
-                                    marginRight: '10px',
-                                    border: '1px solid #ccc', 
-                                    outline: 'none',
-                                    boxSizing: 'content-box', // 너비 조정 시 내용에 따라 조정되도록 설정
-                                    textAlign: 'center', // 텍스트 가운데 정렬
-                                }}
-                            />
-                        </div>
-                        <div>
-                            <input
-                                type="text"
-                                value={item.drugInfo.efficacy}
-                                readOnly
-                                style={{
-                                    width: 'auto',
-                                    minWidth: '150px', // 최소 너비 설정
-                                    maxWidth: '100%',  // 최대 너비를 부모 요소에 맞춤
-                                    padding: '5px',
-                                    marginRight: '10px',
-                                    border: '1px solid #ccc', 
-                                    outline: 'none',
-                                    boxSizing: 'content-box', // 너비 조정 시 내용에 따라 조정되도록 설정
-                                    textAlign: 'center', // 텍스트 가운데 정렬
-                                }}
-                            />
-                        </div>
-                    </div>
                     ))}
-                    
+
                     <div>
                         <button onClick={addDrugField} style={{ padding: '5px 10px', backgroundColor: '#d3d3d3', border: 'none', cursor: 'pointer' }}>+</button>
                     </div>
@@ -170,12 +179,13 @@ const Drug = () => {
                         type="text"
                         value={efficacy}
                         onChange={(e) => setEfficacy(e.target.value)}
-                        style={{ 
-                            width: '150px', 
-                            padding: '5px', 
-                            marginRight: '10px', 
-                            border: '1px solid #ccc', 
-                            outline: 'none' }}
+                        style={{
+                            width: '150px',
+                            padding: '5px',
+                            marginRight: '10px',
+                            border: '1px solid #ccc',
+                            outline: 'none'
+                        }}
                     />
                     <button onClick={getEfficacyDrugs} style={{ padding: '5px 10px', backgroundColor: '#d3d3d3', border: 'none', cursor: 'pointer' }}>검색</button>
                 </div>
@@ -199,7 +209,7 @@ const Drug = () => {
                             textAlign: 'center', // 텍스트 가운데 정렬
                         }}
                     /> */}
-                    검색하신 효능을 가진 약품목록은 다음과 같습니다.</h3>
+                        검색하신 효능을 가진 약품목록은 다음과 같습니다.</h3>
                     <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '20px' }}>
                         <thead>
                             <tr>
