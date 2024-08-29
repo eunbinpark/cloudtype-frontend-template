@@ -121,7 +121,7 @@ const Drug = () => {
                                     type="text"
                                     value={item.drugInfo.ddi}
                                     readOnly
-                                    placeholder="금기/주의"
+                                    placeholder="복용가능여부"
                                     style={{
                                         width: 'auto',
                                         minWidth: '100px', // 최소 너비 설정
