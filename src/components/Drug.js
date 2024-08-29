@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import DrugService from '../services/DrugService';
+import swal from 'sweetalert';
 
 const Drug = () => {
     // 보내는 파라미터
@@ -33,7 +34,7 @@ const Drug = () => {
             DrugService.searchDrug(tki, selectedDrug)
                 .then((response) => {
                     if(response.data.ingredient === null){
-                        alert("금기 또는 주의를 요하는 약물 리스트에 없는 약물입니다.")
+                        swal('제목', '내용', 'warning')
                     }
                     const updatedDrugList = [...drugList];
                     updatedDrugList[index].drugInfo = response.data;
