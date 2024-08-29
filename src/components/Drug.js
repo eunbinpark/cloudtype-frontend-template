@@ -34,7 +34,7 @@ const Drug = () => {
             DrugService.searchDrug(tki, selectedDrug)
                 .then((response) => {
                     if (response.data.ingredient === null) {
-                        swal('warning', '금기 또는 주의를 요하는 약물 리스트에 없는 약물입니다.', 'warning')
+                        swal('Warning', '금기 또는 주의를 요하는 약물 리스트에 없는 약물입니다.', 'warning')
                     }
                     const updatedDrugList = [...drugList];
                     updatedDrugList[index].drugInfo = response.data;
@@ -59,7 +59,7 @@ const Drug = () => {
                 const allIngredientsNull = drugs.every(drug => drug.ingredient === null);
 
                 if (allIngredientsNull) {
-                    swal('warning', '대체 약물이 없습니다.', 'warning');
+                    swal('Warning', '대체 약물이 없습니다.', 'warning');
                 } else {
                     setDrugs(drugs);
                 }
@@ -142,7 +142,7 @@ const Drug = () => {
                                     style={{
                                         width: 'auto',
                                         minWidth: '150px', // 최소 너비 설정
-                                        maxWidth: '100%',  // 최대 너비를 부모 요소에 맞춤
+                                        maxWidth: '200%',  // 최대 너비를 부모 요소에 맞춤
                                         padding: '5px',
                                         marginRight: '10px',
                                         border: '1px solid #ccc',
