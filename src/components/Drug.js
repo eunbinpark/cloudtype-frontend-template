@@ -116,14 +116,15 @@ const Drug = () => {
                                 />
                                 <button onClick={() => getDrugInfo(index)} style={{ padding: '5px 10px', marginRight: '10px', backgroundColor: '#d3d3d3', border: '1px solid #ccc', cursor: 'pointer' }}>검색</button>
                             </div>
-                            <div>
+                            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
                                 <input
                                     type="text"
                                     value={item.drugInfo.ddi}
                                     readOnly
+                                    placeholder="금기/주의"
                                     style={{
                                         width: 'auto',
-                                        minWidth: '150px', // 최소 너비 설정
+                                        minWidth: '100px', // 최소 너비 설정
                                         maxWidth: '100%',  // 최대 너비를 부모 요소에 맞춤
                                         padding: '5px',
                                         marginRight: '10px',
@@ -133,16 +134,15 @@ const Drug = () => {
                                         textAlign: 'center', // 텍스트 가운데 정렬
                                     }}
                                 />
-                            </div>
-                            <div>
                                 <input
                                     type="text"
                                     value={item.drugInfo.efficacy}
                                     readOnly
+                                    placeholder="효능"
                                     style={{
                                         width: 'auto',
-                                        minWidth: '150px', // 최소 너비 설정
-                                        maxWidth: '200%',  // 최대 너비를 부모 요소에 맞춤
+                                        minWidth: '400px', // 최소 너비 설정
+                                        maxWidth: '100%',  // 최대 너비를 부모 요소에 맞춤
                                         padding: '5px',
                                         marginRight: '10px',
                                         border: '1px solid #ccc',
