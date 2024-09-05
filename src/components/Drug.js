@@ -213,17 +213,17 @@ const Drug = () => {
                     <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '20px' }}>
                         <thead>
                             <tr>
-                                <th style={{ border: '1px solid #000', padding: '8px', backgroundColor: '#f2f2f2' }}>대체성분</th>
                                 <th style={{ border: '1px solid #000', padding: '8px', backgroundColor: '#f2f2f2' }}>대체제품</th>
                                 <th style={{ border: '1px solid #000', padding: '8px', backgroundColor: '#f2f2f2' }}>해당제약회사</th>
+                                <th style={{ border: '1px solid #000', padding: '8px', backgroundColor: '#f2f2f2' }}>대체성분</th>
                             </tr>
                         </thead>
                         <tbody>
                             {Drugs.map((drug, index) => (
                                 <tr key={index}>
-                                    <td style={{ border: '1px solid #000', padding: '8px' }}>{drug.ingredient}({drug.ingredientkor})</td>
                                     <td style={{ border: '1px solid #000', padding: '8px' }}>{drug.brandname}</td>
                                     <td style={{ border: '1px solid #000', padding: '8px' }}>{drug.company}</td>
+                                    <td style={{ border: '1px solid #000', padding: '8px' }}>{drug.ingredient}</td>
                                 </tr>
                             ))}
                         </tbody>
