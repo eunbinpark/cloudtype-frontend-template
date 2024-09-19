@@ -30,8 +30,9 @@ const Drug = () => {
     // 항암제, 제품 검색
     const getDrugInfo = (index) => {
         if (index >= 0 && index < drugList.length && drugList[index].drug) {
-            const selectedDrug = drugList[index].drug;
-            DrugService.searchDrug(tki, selectedDrug)
+            const selectedDrug = drugList[index].drug.trim();  // drug 값의 앞뒤 공백 제거
+            const trimmedTki = tki.trim();  // tki 값의 앞뒤 공백 제거
+            DrugService.searchDrug(trimmedTki, selectedDrug)
                 .then((response) => {
                     if (response.data.ingredient === null) {
                         swal('Warning', '금기 또는 주의를 요하는 약물 리스트에 없는 약물입니다.', 'warning')
@@ -50,8 +51,10 @@ const Drug = () => {
     }
 
     const getEfficacyDrugs = () => {
+        const trimmedTki = tki.trim();  // tki 값의 앞뒤 공백 제거
+        const trimmedEfficacy = efficacy.trim();  // efficacy 값의 앞뒤 공백 제거
 
-        DrugService.searchEfficacy(tki, efficacy)
+        DrugService.searchEfficacy(trimmedTki, trimmedEfficacy)
             .then((response) => {
                 const drugs = response.data;
 
