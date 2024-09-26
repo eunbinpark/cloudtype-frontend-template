@@ -147,51 +147,51 @@ const OASIS = () => {
             <div style={{ borderBottom: '1px solid #ccc', margin: '20px 0' }}></div>
             <div>
                 <div className="row">
-                    <label htmlFor="promyelocyte">PROMYELOCYTE :</label>
+                    <label htmlFor="promyelocyte" className="label">PROMYELOCYTE :</label>
                     <input type="text" id="promyelocyte" value={formData.promyelocyte} readOnly />
                 </div>
                 <div className="row">
-                    <label htmlFor="blasts">BLASTS :</label>
+                    <label htmlFor="blasts" className="label">BLASTS :</label>
                     <input type="text" id="blasts" value={formData.blasts} readOnly />
                 </div>
                 <div className="row">
-                    <label htmlFor="lymphocytes">LYMPHOCYTES :</label>
+                    <label htmlFor="lymphocytes" className="label">LYMPHOCYTES :</label>
                     <input type="text" id="lymphocytes" value={formData.lymphocytes} readOnly />
                 </div>
                 <div className="row">
-                    <label htmlFor="metamyelocyte">METAMYELOCYTE :</label>
+                    <label htmlFor="metamyelocyte" className="label">METAMYELOCYTE :</label>
                     <input type="text" id="metamyelocyte" value={formData.metamyclocyte} readOnly />
                 </div>
                 <div className="row">
-                    <label htmlFor="monocytes">MONOCYTES :</label>
+                    <label htmlFor="monocytes" className="label">MONOCYTES :</label>
                     <input type="text" id="monocytes" value={formData.monocytes} readOnly />
                 </div>
                 <div className="row">
-                    <label htmlFor="ae_category_1">AE CATEGORY 1 :</label>
+                    <label htmlFor="ae_category_1" className="label">AE CATEGORY 1 :</label>
                     <input type="text" id="ae_category_1" value={formData.ae_category_1} readOnly />
                 </div>
                 <div className="row">
-                    <label htmlFor="grade_1">GRADE 1 :</label>
+                    <label htmlFor="grade_1" className="label">GRADE 1 :</label>
                     <input type="text" id="grade_1" value={formData.grade_1} readOnly />
                 </div>
                 <div className="row">
-                    <label htmlFor="ae_code_1">AE CODE 1 :</label>
+                    <label htmlFor="ae_code_1" className="label">AE CODE 1 :</label>
                     <input type="text" id="ae_code_1" value={formData.ae_code_1} readOnly />
                 </div>
                 <div className="row">
-                    <label htmlFor="ae_category_2">AE CATEGORY 2 :</label>
+                    <label htmlFor="ae_category_2" className="label">AE CATEGORY 2 :</label>
                     <input type="text" id="ae_category_2" value={formData.ae_category_2} readOnly />
                 </div>
                 <div className="row">
-                    <label htmlFor="delta_grade_1">delta GRADE 1 :</label>
+                    <label htmlFor="delta_grade_1" className="label">delta GRADE 1 :</label>
                     <input type="text" id="delta_grade_1" value={formData.delta_grade_1} readOnly />
                 </div>
                 <div className="row">
-                    <label htmlFor="delta_ae_code_1">delta AE CODE 1 :</label>
+                    <label htmlFor="delta_ae_code_1" className="label">delta AE CODE 1 :</label>
                     <input type="text" id="delta_ae_code_1" value={formData.delta_ae_code_1} readOnly />
                 </div>
                 <div className="row">
-                    <label htmlFor="delta_ae_category_1">delta AE CATEGORY 1 :</label>
+                    <label htmlFor="delta_ae_category_1" className="label">delta AE CATEGORY 1 :</label>
                     <input type="text" id="delta_ae_category_1" value={formData.delta_ae_category_1} readOnly />
                 </div>
             </div>
