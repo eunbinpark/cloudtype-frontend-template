@@ -4,14 +4,15 @@
     border: 2px solid #ccc;
     border-radius: 10px;
     margin: 50px auto;
-    text-align: center;
+    /* text-align: center; */
 }
 
 label {
     display: inline-block;
     /* width: 150px; */
-    text-align: right;
+    text-align: lefh;
     margin-right: 10px;
+    width: 170px;
 }
 
 input[type="text"] {
@@ -103,7 +104,7 @@ button {
     height: 20px;
     border: 1px solid #000;
     margin-right: 10px;
-    flex-shrink: 0;
+    /* flex-shrink: 0; */
 }
 
 .red-bar {
@@ -122,4 +123,19 @@ button {
 p {
     margin: 5px 0 20px;
     font-size: 14px;
+}
+
+.numVisit {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.oasis-decision {
+    text-align: left;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.bold {
+    font-weight: bold;
 }

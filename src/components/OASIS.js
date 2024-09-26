@@ -38,50 +38,18 @@ const OASIS = () => {
             setErrorMessage('숫자로 입력해주세요.');
             return;
         }
+        if (!numVisit) {
+            setErrorMessage('NumVisit 을 입력해주세요.')
+            return;
+        }
 
-        setErrorMessage(''); // 에러 메시지 초기화
-
-        if (numVisit === '1') {
-            setFormData({
-                promyelocyte: '10',
-                blasts: '5',
-                lymphocytes: '30',
-                metamyelocyte: '12',
-                monocytes: '20',
-                ae_category_1: 'Category A',
-                grade_1: 'Grade 2',
-                ae_code_1: 'Code 123',
-                ae_category_2: 'Category B',
-                delta_grade_1: 'Grade 1',
-                delta_ae_code_1: 'Code 456',
-                delta_ae_category_1: 'Category C',
-            });
-            setPercentage1(75);
-            setPercentage2(25);
-        } else if (numVisit === '2') {
-            setFormData({
-                promyelocyte: '15',
-                blasts: '7',
-                lymphocytes: '25',
-                metamyelocyte: '10',
-                monocytes: '18',
-                ae_category_1: 'Category X',
-                grade_1: 'Grade 3',
-                ae_code_1: 'Code 789',
-                ae_category_2: 'Category Y',
-                delta_grade_1: 'Grade 2',
-                delta_ae_code_1: 'Code 321',
-                delta_ae_category_1: 'Category Z',
-            });
-            setPercentage1(60);
-            setPercentage2(40);
-        } else {
-            // 기본값 설정 (혹은 비어있을 수 있음)
+        if (!(numVisit === '2669' || numVisit === '37894' || numVisit === '35849')) {
+            setErrorMessage('결과가 없습니다.')
             setFormData({
                 promyelocyte: '',
                 blasts: '',
                 lymphocytes: '',
-                metamyelocyte: '',
+                metamyclocyte: '',
                 monocytes: '',
                 ae_category_1: '',
                 grade_1: '',
@@ -91,14 +59,72 @@ const OASIS = () => {
                 delta_ae_code_1: '',
                 delta_ae_category_1: '',
             });
-            setPercentage1(81.7);
-            setPercentage2(18.3);
+            return
+        }
+
+        setErrorMessage(''); // 에러 메시지 초기화
+
+        if (numVisit === '2669') {
+            setFormData({
+                promyelocyte: '0.0',
+                blasts: '0.0',
+                lymphocytes: '2.0',
+                metamyclocyte: '9.0',
+                monocytes: '2.0',
+                ae_category_1: '0.0',
+                grade_1: '0.0',
+                ae_code_1: '0.0',
+                ae_category_2: '0.0',
+                delta_grade_1: '0.0',
+                delta_ae_code_1: '0.0',
+                delta_ae_category_1: '0.0',
+            });
+            setPercentage1(83.56);
+            setPercentage2(16.44);
+        } else if (numVisit === '37894') {
+            setFormData({
+                promyelocyte: '0.0',
+                blasts: '0.0',
+                lymphocytes: '35.0',
+                metamyclocyte: '0.0',
+                monocytes: '6.0',
+                ae_category_1: '0.0',
+                grade_1: '0.0',
+                ae_code_1: '0.0',
+                ae_category_2: '0.0',
+                delta_grade_1: '0.0',
+                delta_ae_code_1: '0.0',
+                delta_ae_category_1: '0.0',
+            });
+            setPercentage1(91.2);
+            setPercentage2(8.8);
+        } else if (numVisit === '35849') {
+            setFormData({
+                promyelocyte: '0.0',
+                blasts: '0.0',
+                lymphocytes: '21.0',
+                metamyclocyte: '0.0',
+                monocytes: '11.0',
+                ae_category_1: '1.0',
+                grade_1: '2.0',
+                ae_code_1: '46.0',
+                ae_category_2: '1.0',
+                delta_grade_1: '2.0',
+                delta_ae_code_1: '46.0',
+                delta_ae_category_1: '1.0',
+            });
+            setPercentage1(99.99);
+            setPercentage2(0.01);
         }
     }
     // 오아시스 버튼 클릭
     const handleOASISClick = () => {
         if (!numVisit) {
             swal('Warning', 'Num Visit을 입력해주세요.', 'warning');
+            return;
+        }
+        else if(!formData.promyelocyte){
+            swal('Warning', 'Num Visit을 검색해주세요.', 'warning');
             return;
         }
         //팝업으로 결과 확인
@@ -112,12 +138,13 @@ const OASIS = () => {
     return (
         <div className="container">
             <div className="row">
-                <label htmlFor="numVisit">Num Visit :</label>
+                <label htmlFor="numVisit" className="numVisit">Num Visit :</label>
                 <input type="text" id="numVisit" value={numVisit} onChange={(e) => setNumVisit(e.target.value)} 
                 onKeyDown={(e) => e.key === 'Enter' && handleSearchClick()}/>
                 <button onClick={handleSearchClick}>Search</button>
                 {errorMessage && <p className="error-message">{errorMessage}</p>}
             </div>
+            <div style={{ borderBottom: '1px solid #ccc', margin: '20px 0' }}></div>
             <div>
                 <div className="row">
                     <label htmlFor="promyelocyte">PROMYELOCYTE :</label>
@@ -176,22 +203,22 @@ const OASIS = () => {
                 <div className="modal">
                     <div className="modal-content">
                         <span className="close" onClick={closeModal}>&times;</span>
-                        <h2>OASIS Decision</h2>
+                        <h1 className="oasis-decision">OASIS Decision</h1>
 
                         <div className="bar-container">
                             <div className="bar-graph">
                                 <div className="bar red-bar" style={{ width: `${percentage1}%` }}></div>
-                                <span className="percentage">{percentage1}%</span>
+                                <span className={`percent ${percentage1 >= 50.0 ? 'bold' : ''}`}>{percentage1}%</span>
                             </div>
-                            <p>Continue with the current treatment</p>
+                            <p className={`percent ${percentage1 >= 50.0 ? 'bold' : ''}`}>Continue with the current treatment</p>
                         </div>
 
                         <div className="bar-container">
                             <div className="bar-graph">
                                 <div className="bar blue-bar" style={{ width: `${percentage2}%` }}></div>
-                                <span className="percentage">{percentage2}%</span>
+                                <span className={`percent ${percentage2 >= 50.0 ? 'bold' : ''}`}>{percentage2}%</span>
                             </div>
-                            <p>Discontinue with the current treatment</p>
+                            <p className={`percent ${percentage2 >= 50.0 ? 'bold' : ''}`}>Discontinue with the current treatment</p>
                         </div>
                     </div>
                 </div>
