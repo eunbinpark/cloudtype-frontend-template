@@ -39,7 +39,7 @@ const OASIS = () => {
             return;
         }
         if (!numVisit) {
-            setErrorMessage('NumVisit 을 입력해주세요.')
+            setErrorMessage('Patient ID 을 입력해주세요.')
             return;
         }
 
@@ -120,11 +120,11 @@ const OASIS = () => {
     // 오아시스 버튼 클릭
     const handleOASISClick = () => {
         if (!numVisit) {
-            swal('Warning', 'Num Visit을 입력해주세요.', 'warning');
+            swal('Warning', 'Patient ID를 입력해주세요.', 'warning');
             return;
         }
         else if(!formData.promyelocyte){
-            swal('Warning', 'Num Visit을 검색해주세요.', 'warning');
+            swal('Warning', 'Patient ID를 검색해주세요.', 'warning');
             return;
         }
         //팝업으로 결과 확인
@@ -138,7 +138,7 @@ const OASIS = () => {
     return (
         <div className="container">
             <div className="row">
-                <label htmlFor="numVisit" className="numVisit">Num Visit :</label>
+                <label htmlFor="numVisit" className="numVisit">Patient ID :</label>
                 <input type="text" id="numVisit" value={numVisit} onChange={(e) => setNumVisit(e.target.value)} 
                 onKeyDown={(e) => e.key === 'Enter' && handleSearchClick()}/>
                 <button onClick={handleSearchClick}>Search</button>
@@ -183,15 +183,15 @@ const OASIS = () => {
                     <input type="text" id="ae_category_2" value={formData.ae_category_2} readOnly />
                 </div>
                 <div className="row">
-                    <label htmlFor="delta_grade_1" className="label">delta GRADE 1 :</label>
+                    <label htmlFor="delta_grade_1" className="label">Δ GRADE 1 :</label>
                     <input type="text" id="delta_grade_1" value={formData.delta_grade_1} readOnly />
                 </div>
                 <div className="row">
-                    <label htmlFor="delta_ae_code_1" className="label">delta AE CODE 1 :</label>
+                    <label htmlFor="delta_ae_code_1" className="label">Δ AE CODE 1 :</label>
                     <input type="text" id="delta_ae_code_1" value={formData.delta_ae_code_1} readOnly />
                 </div>
                 <div className="row">
-                    <label htmlFor="delta_ae_category_1" className="label">delta AE CATEGORY 1 :</label>
+                    <label htmlFor="delta_ae_category_1" className="label">Δ AE CATEGORY 1 :</label>
                     <input type="text" id="delta_ae_category_1" value={formData.delta_ae_category_1} readOnly />
                 </div>
             </div>
