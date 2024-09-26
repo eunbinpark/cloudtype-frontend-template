@@ -117,7 +117,8 @@ const Drug = () => {
                                     }}
                                     style={{ width: '150px', padding: '5px', marginRight: '10px', border: '1px solid #ccc', outline: 'none' }}
                                 />
-                                <button onClick={() => getDrugInfo(index)} style={{ padding: '5px 10px', marginRight: '10px', backgroundColor: '#d3d3d3', border: '1px solid #ccc', cursor: 'pointer' }}>검색</button>
+                                <button onClick={() => getDrugInfo(index)} style={{ padding: '5px 10px', marginRight: '10px', backgroundColor: '#d3d3d3', border: '1px solid #ccc', cursor: 'pointer' }}
+                                    onKeyDown={(e) => e.key === 'Enter' && getDrugInfo(index)}>검색</button>
                             {/* </div>
                             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}> */}
                                 <input
@@ -190,7 +191,8 @@ const Drug = () => {
                             outline: 'none'
                         }}
                     />
-                    <button onClick={getEfficacyDrugs} style={{ padding: '5px 10px', backgroundColor: '#d3d3d3', border: 'none', cursor: 'pointer' }}>검색</button>
+                    <button onClick={getEfficacyDrugs} style={{ padding: '5px 10px', backgroundColor: '#d3d3d3', border: 'none', cursor: 'pointer' }}
+                    onKeyDown={(e) => e.key === 'Enter' && getEfficacyDrugs}>검색</button>
                 </div>
 
                 <div>
