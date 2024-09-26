@@ -79,6 +79,18 @@ const Drug = () => {
         setDrugList([...drugList, { drug: '', drugInfo: { ddi: '', efficacy: '' } }]);
     };
 
+    const handleKeyDown = (e, index) => {
+        if (e.key === 'Enter') {
+            getDrugInfo(index);  // Enter 키가 눌리면 해당 인덱스에 대해 검색
+        }
+    };
+
+    const handleEfficacyKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            getEfficacyDrugs();  // Enter 키가 눌리면 효능 검색
+        }
+    };
+
     return (
         <div style={{ margin: '20px', fontFamily: 'Arial, sans-serif' }}>
             <h1 style={{ fontSize: '25px', fontWeight: 'bold' }}>금기약물 검색</h1>
@@ -116,9 +128,10 @@ const Drug = () => {
                                         setDrugList(updatedDrugList);
                                     }}
                                     style={{ width: '150px', padding: '5px', marginRight: '10px', border: '1px solid #ccc', outline: 'none' }}
+                                    onKeyDown={(e) => handleKeyDown(e, index)}
                                 />
                                 <button onClick={() => getDrugInfo(index)} style={{ padding: '5px 10px', marginRight: '10px', backgroundColor: '#d3d3d3', border: '1px solid #ccc', cursor: 'pointer' }}
-                                    onKeyDown={(e) => e.key === 'Enter' && getDrugInfo(index)}>검색</button>
+                                    >검색</button>
                             {/* </div>
                             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}> */}
                                 <input
@@ -190,9 +203,10 @@ const Drug = () => {
                             border: '1px solid #ccc',
                             outline: 'none'
                         }}
+                        onKeyDown={handleEfficacyKeyDown} // 엔터키 이벤트 추가
                     />
                     <button onClick={getEfficacyDrugs} style={{ padding: '5px 10px', backgroundColor: '#d3d3d3', border: 'none', cursor: 'pointer' }}
-                    onKeyDown={(e) => e.key === 'Enter' && getEfficacyDrugs}>검색</button>
+                    >검색</button>
                 </div>
 
                 <div>
