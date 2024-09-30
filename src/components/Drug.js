@@ -106,68 +106,82 @@ const Drug = () => {
                 <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '10px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
                         <label style={{ marginRight: '10px' }}>복용하고 있는 표적항암제(성분 혹은 제품명) </label>
-                        <input
-                            type="text"
+                        {/* 나중에 드롭다운의 값도 백에서 받아오는 식으로 바꿀 예정 현재는 하드코딩 */}
+                        <select
                             value={tki}
                             onChange={(e) => setTki(e.target.value)}
                             style={{ width: '150px', padding: '5px', marginRight: '10px', border: '1px solid #ccc', outline: 'none' }}
-                        />
+                        >
+                            <option value="">-- 항암제 선택 --</option>
+                            <option value="Scemblix">셈블릭스</option>
+                            <option value="Bosulif">보술리프</option>
+                            <option value="Sprycel">스프라이셀</option>
+                            <option value="ELVN">엔리븐</option>
+                            <option value="Glivec">글리벡</option>
+                            <option value="Tasigna">타시그나</option>
+                            <option value="Iclusig">아이클루시그</option>
+                            <option value="Supect">슈펙트</option>
+                            <option value="Ropeginterferon">로페그인터페론</option>
+                            <option value="Terns">턴즈</option>
+                            <option value="Vodobatinib">보도바티닙</option>
+                            {/* 여기에 더 많은 옵션 추가 가능 */}
+                        </select>
                     </div>
                     <div style={{ marginBottom: '20px' }}></div>
 
                     {drugList.map((item, index) => (
                         <div style={{ display: 'flex' }}>
                             {/* <div style={{ display: 'flex', alignItems: 'center' }}> */}
-                                <label style={{ marginRight: '10px' }}>처방받은 약품(성분 혹은 제품명)</label>
-                                <input
-                                    type="text"
-                                    value={item.drug}
-                                    onChange={(e) => {
-                                        const updatedDrugList = [...drugList];
-                                        updatedDrugList[index].drug = e.target.value;
-                                        setDrugList(updatedDrugList);
-                                    }}
-                                    style={{ width: '150px', padding: '5px', marginRight: '10px', border: '1px solid #ccc', outline: 'none' }}
-                                    onKeyDown={(e) => handleKeyDown(e, index)}
-                                />
-                                <button onClick={() => getDrugInfo(index)} style={{ padding: '5px 10px', marginRight: '10px', backgroundColor: '#d3d3d3', border: '1px solid #ccc', cursor: 'pointer' }}
-                                    >검색</button>
+                            <label style={{ marginRight: '10px' }}>처방받은 약품(성분 혹은 제품명)</label>
+                            <input
+                                type="text"
+                                value={item.drug}
+                                onChange={(e) => {
+                                    const updatedDrugList = [...drugList];
+                                    updatedDrugList[index].drug = e.target.value;
+                                    setDrugList(updatedDrugList);
+                                }}
+                                style={{ width: '150px', padding: '5px', marginRight: '10px', border: '1px solid #ccc', outline: 'none' }}
+                                onKeyDown={(e) => handleKeyDown(e, index)}
+                            />
+                            <button onClick={() => getDrugInfo(index)} style={{ padding: '5px 10px', marginRight: '10px', backgroundColor: '#d3d3d3', border: '1px solid #ccc', cursor: 'pointer' }}
+                            >검색</button>
                             {/* </div>
                             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}> */}
-                                <input
-                                    type="text"
-                                    value={item.drugInfo.ddi}
-                                    readOnly
-                                    placeholder="복용가능여부"
-                                    style={{
-                                        width: 'auto',
-                                        minWidth: '100px', // 최소 너비 설정
-                                        maxWidth: '100%',  // 최대 너비를 부모 요소에 맞춤
-                                        padding: '5px',
-                                        marginRight: '10px',
-                                        border: '1px solid #ccc',
-                                        outline: 'none',
-                                        boxSizing: 'content-box', // 너비 조정 시 내용에 따라 조정되도록 설정
-                                        textAlign: 'center', // 텍스트 가운데 정렬
-                                    }}
-                                />
-                                <input
-                                    type="text"
-                                    value={item.drugInfo.efficacy}
-                                    readOnly
-                                    placeholder="효능"
-                                    style={{
-                                        width: 'auto',
-                                        minWidth: '400px', // 최소 너비 설정
-                                        maxWidth: '100%',  // 최대 너비를 부모 요소에 맞춤
-                                        padding: '5px',
-                                        marginRight: '10px',
-                                        border: '1px solid #ccc',
-                                        outline: 'none',
-                                        boxSizing: 'content-box', // 너비 조정 시 내용에 따라 조정되도록 설정
-                                        textAlign: 'center', // 텍스트 가운데 정렬
-                                    }}
-                                />
+                            <input
+                                type="text"
+                                value={item.drugInfo.ddi}
+                                readOnly
+                                placeholder="복용가능여부"
+                                style={{
+                                    width: 'auto',
+                                    minWidth: '100px', // 최소 너비 설정
+                                    maxWidth: '100%',  // 최대 너비를 부모 요소에 맞춤
+                                    padding: '5px',
+                                    marginRight: '10px',
+                                    border: '1px solid #ccc',
+                                    outline: 'none',
+                                    boxSizing: 'content-box', // 너비 조정 시 내용에 따라 조정되도록 설정
+                                    textAlign: 'center', // 텍스트 가운데 정렬
+                                }}
+                            />
+                            <input
+                                type="text"
+                                value={item.drugInfo.efficacy}
+                                readOnly
+                                placeholder="효능"
+                                style={{
+                                    width: 'auto',
+                                    minWidth: '400px', // 최소 너비 설정
+                                    maxWidth: '100%',  // 최대 너비를 부모 요소에 맞춤
+                                    padding: '5px',
+                                    marginRight: '10px',
+                                    border: '1px solid #ccc',
+                                    outline: 'none',
+                                    boxSizing: 'content-box', // 너비 조정 시 내용에 따라 조정되도록 설정
+                                    textAlign: 'center', // 텍스트 가운데 정렬
+                                }}
+                            />
                             {/* </div> */}
                         </div>
                     ))}
