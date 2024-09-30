@@ -113,17 +113,17 @@ const Drug = () => {
                             style={{ width: '150px', padding: '5px', marginRight: '10px', border: '1px solid #ccc', outline: 'none' }}
                         >
                             <option value="">-- 항암제 선택 --</option>
-                            <option value="Scemblix">셈블릭스</option>
-                            <option value="Bosulif">보술리프</option>
-                            <option value="Sprycel">스프라이셀</option>
-                            <option value="ELVN">엔리븐</option>
-                            <option value="Glivec">글리벡</option>
-                            <option value="Tasigna">타시그나</option>
-                            <option value="Iclusig">아이클루시그</option>
-                            <option value="Supect">슈펙트</option>
-                            <option value="Ropeginterferon">로페그인터페론</option>
-                            <option value="Terns">턴즈</option>
-                            <option value="Vodobatinib">보도바티닙</option>
+                            <option value="셈블릭스">셈블릭스</option>
+                            <option value="보술리프">보술리프</option>
+                            <option value="스프라이셀">스프라이셀</option>
+                            <option value="엔리븐">엔리븐</option>
+                            <option value="글리벡">글리벡</option>
+                            <option value="타시그나">타시그나</option>
+                            <option value="아이클루시그">아이클루시그</option>
+                            <option value="슈펙트">슈펙트</option>
+                            <option value="로페그인터페론">로페그인터페론</option>
+                            <option value="턴즈">턴즈</option>
+                            <option value="보도바티닙">보도바티닙</option>
                             {/* 여기에 더 많은 옵션 추가 가능 */}
                         </select>
                     </div>
